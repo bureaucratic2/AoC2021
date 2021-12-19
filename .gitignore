@@ -17,3 +17,6 @@
 
 # Shells
 *.sh
+
+# Logs
+*.log
