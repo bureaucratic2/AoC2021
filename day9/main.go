@@ -87,13 +87,10 @@ func part2(v heightMap) {
 		}
 	}
 
-	fmt.Println(res)
-
 	sort.Slice(res, func(i, j int) bool {
 		return res[i] > res[j]
 	})
 
-	fmt.Println(res)
 	fmt.Println("Part2:", res[0]*res[1]*res[2])
 }
 
