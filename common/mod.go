@@ -11,6 +11,11 @@ const MinUint = 0
 const MaxInt = int(MaxUint >> 1)
 const MinInt = -MaxInt - 1
 
+const MaxUint64 = ^uint64(0)
+const MinUint64 = 0
+const MaxInt64 = int64(MaxUint64 >> 1)
+const MinInt64 = -MaxInt64 - 1
+
 func Load() string {
 	dir, err := os.Getwd()
 	Check(err)
