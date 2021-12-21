@@ -50,3 +50,19 @@ func IsLower(s string) bool {
 	}
 	return true
 }
+
+func IntMin(i int, j int) int {
+	if i < j {
+		return i
+	} else {
+		return j
+	}
+}
+
+func IntMax(i int, j int) int {
+	if i < j {
+		return j
+	} else {
+		return i
+	}
+}
