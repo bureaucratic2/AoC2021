@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"common"
 	"fmt"
 	"strings"
@@ -194,12 +193,10 @@ func binaryToDecimal(arr []byte) int {
 type message []byte
 
 func packetsFromStr(s string) message {
-	scanner := bufio.NewScanner(strings.NewReader(s))
 	msg := make(message, 0)
 
-	scanner.Scan()
-	for i := range scanner.Text() {
-		n := scanner.Text()[i]
+	for i := range s {
+		n := s[i]
 		if n >= 65 {
 			n -= '7'
 		} else {
