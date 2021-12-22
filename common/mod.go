@@ -1,6 +1,7 @@
 package common
 
 import (
+	"errors"
 	"os"
 	"path"
 	"unicode"
@@ -65,4 +66,24 @@ func IntMax(i int, j int) int {
 	} else {
 		return i
 	}
+}
+
+type Stack []interface{}
+
+func (s *Stack) Push(elem interface{}) {
+	*s = append(*s, elem)
+}
+
+func (s *Stack) Pop() (interface{}, error) {
+	len := len(*s)
+	if len == 0 {
+		return 0, errors.New("stack is empty")
+	}
+	res := (*s)[len-1]
+	*s = (*s)[:len-1]
+	return res, nil
+}
+
+func (s *Stack) IsEmpty() bool {
+	return len(*s) == 0
 }
