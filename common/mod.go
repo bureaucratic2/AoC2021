@@ -68,6 +68,13 @@ func IntMax(i int, j int) int {
 	}
 }
 
+func IntAbs(i int) int {
+	if i < 0 {
+		i = -i
+	}
+	return i
+}
+
 type Stack []interface{}
 
 func (s *Stack) Push(elem interface{}) {
