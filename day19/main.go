@@ -30,14 +30,19 @@ func part1(scans []scan) []map[int]scanInfo {
 		infos = append(infos, make(map[int]scanInfo))
 	}
 
+	connected := make(map[int]bool)
+	connected[0] = true
 	for i := range scans {
 		for j := range scans {
-			if j == i {
+			if j == i || connected[j] {
 				continue
 			}
 			info := overlap(scans[i], scans[j], lookupTable[j])
 			if info.relativeRotation >= 0 {
 				infos[i][j] = info
+				if connected[i] {
+					connected[j] = true
+				}
 			}
 		}
 	}
@@ -160,6 +165,11 @@ func overlap(first, second scan, lookupTable map[coordinate]bool) scanInfo {
 	return scanInfo{-1, coordinate{}}
 }
 
+// compute other scanner's relative coordinate and relative rotation r
+// r x base + c1 = r x c2
+// base = res
+// c1 is some point's coordinate relative to other scanner
+// c2 is the same point's coordinate relative to current scanner
 func compute(r int, c1, c2 coordinate) coordinate {
 	res := make([]int, 3)
 	c1Val := make([]int, 0)
@@ -174,6 +184,7 @@ func compute(r int, c1, c2 coordinate) coordinate {
 	return coordinate{res[0], res[1], res[2]}
 }
 
+// current scanner's absolute coordinate to other scanner's relative coordinate
 func verify(r int, base, c coordinate, lookup map[coordinate]bool) bool {
 	res := make([]int, 3)
 	cVal := make([]int, 0)
@@ -186,6 +197,7 @@ func verify(r int, base, c coordinate, lookup map[coordinate]bool) bool {
 	return lookup[coordinate{res[0], res[1], res[2]}]
 }
 
+// other scanner's relative coordinate to current scanner's absolute coordinate
 func relativeCoordinate(r int, base, c coordinate) coordinate {
 	res := make([]int, 3)
 	cVal := make([]int, 0)
