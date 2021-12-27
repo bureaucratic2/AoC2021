@@ -17,6 +17,10 @@ const MinUint64 = 0
 const MaxInt64 = int64(MaxUint64 >> 1)
 const MinInt64 = -MaxInt64 - 1
 
+type Pair struct {
+	A, B interface{}
+}
+
 func Load() string {
 	dir, err := os.Getwd()
 	Check(err)
